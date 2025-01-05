@@ -24,31 +24,28 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("fire"):
 		handleFire()
-		
-	var target = getCursorPosition()
-	
-	var rot = atan2(target.y - global_position.y, target.x - global_position.x)
-	- asin($Planet.Radius / (target-global_position).length())
-	
-	var spawnPos = $Planet.global_position
-	+ Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
-	
-	$Sprite2D.global_position = spawnPos
 	
 	$Planet.addInput(dir)
 	
 func handleFire():
 	var target = getCursorPosition()
 	
-	var rot = atan2(target.y - global_position.y, target.x - global_position.x)
-	- asin($Planet.Radius / (target-global_position).length())
+	var dist = (target-global_position).length()
 	
-	var spawnPos = $Planet.global_position
-	+ Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
+	if dist < $Planet.Radius:
+		return
 	
-	spawnProjectile((target - global_position).normalized(), spawnPos)
+	var rot = atan2(target.y - global_position.y, target.x - global_position.x) - (
+		asin($Planet.Radius / dist)) + PI/2
 	
 	
+	print(Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot)))
+	
+	var spawnPos = $Planet.global_position + Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
+	
+	spawnProjectile((target - spawnPos).normalized(), spawnPos)
+
+
 func spawnProjectile(dir: Vector2, pos: Vector2):
 	var p = PROJECTILE.instantiate() as Projectile
 	p.global_position = pos

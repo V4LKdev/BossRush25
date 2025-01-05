@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2222rt7gybpt"]
+
+[ext_resource type="Script" path="res://scenes/coins/pinata.gd" id="1_ceijh"]
+
+[node name="Pinata" type="Node2D"]
+script = ExtResource("1_ceijh")

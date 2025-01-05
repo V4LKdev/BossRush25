@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0wrqvcekv66r"]
+
+[ext_resource type="Script" path="res://scenes/coins/impulse_mover.gd" id="1_0qhgm"]
+
+[node name="ImpulseMover" type="Node2D"]
+script = ExtResource("1_0qhgm")

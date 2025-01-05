@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgysduwu7ryat"]
+[gd_scene load_steps=5 format=3 uid="uid://dgysduwu7ryat"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_00c0w"]
 [ext_resource type="PackedScene" uid="uid://dcvmiih24ups3" path="res://scenes/Planet.tscn" id="1_inyph"]
 [ext_resource type="Script" path="res://target.gd" id="3_gmmte"]
 [ext_resource type="Script" path="res://scenes/cursor.gd" id="4_5ks71"]
-[ext_resource type="Texture2D" uid="uid://ct6co8j1hve1f" path="res://icon.svg" id="5_vx3k5"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_00c0w")
@@ -21,7 +20,3 @@ script = ExtResource("3_gmmte")
 
 [node name="Cursor" type="Node2D" parent="."]
 script = ExtResource("4_5ks71")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("5_vx3k5")
