@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckdb3pnij5mj3"]
+
+[ext_resource type="PackedScene" uid="uid://dgysduwu7ryat" path="res://scenes/Player.tscn" id="1_4b8ve"]
+[ext_resource type="Texture2D" uid="uid://bjqbcp8ud2yuo" path="res://assets/images/galaxy-cosmic-3840x2160-14974.jpg" id="1_6idqa"]
+
+[node name="Game" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_6idqa")
+
+[node name="Player" parent="." instance=ExtResource("1_4b8ve")]
