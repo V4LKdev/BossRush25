@@ -4,12 +4,12 @@ class_name Player
 @export var PROJECTILE: PackedScene = preload("res://scenes/Projectile.tscn")
 @export var ProjectileDamage = 1.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var MinZoom = 0.3
+@export var MaxZoom = 2.0
+@export var ZoomSpeed = 1.0
 
+var zoom: float = MaxZoom
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var dir = Vector2()
 
@@ -25,8 +25,21 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		handleFire()
 	
-	$Planet.addInput(dir)
+	handleZoom(delta)
 	
+	$Planet.addInput(dir)
+
+func handleZoom(delta: float) -> void:
+	var t = 0
+	if Input.is_action_just_released("scrollup"):
+		t = 1
+	elif Input.is_action_just_released("scrolldown"):
+		t = -1
+	
+	zoom = clampf(zoom + t * delta * 3, MinZoom, MaxZoom)
+	%Cam.zoom.x = lerpf(%Cam.zoom.x, zoom, ZoomSpeed * delta)
+	%Cam.zoom.y = lerpf(%Cam.zoom.y, zoom, ZoomSpeed * delta)
+
 func handleFire():
 	var target = getCursorPosition()
 	
@@ -46,7 +59,6 @@ func handleFire():
 	
 	spawnProjectile((target - spawnPos).normalized(), spawnPos)
 
-
 func spawnProjectile(dir: Vector2, pos: Vector2):
 	var p = PROJECTILE.instantiate() as Projectile
 	p.global_position = pos
@@ -58,6 +70,6 @@ func spawnProjectile(dir: Vector2, pos: Vector2):
 
 func getCursorPosition() -> Vector2:
 	return $Cursor.global_position
-	
+
 func getGlobalPosition() -> Vector2:
 	return $Planet.global_position

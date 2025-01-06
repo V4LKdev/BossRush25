@@ -7,10 +7,12 @@
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_00c0w")
+MaxZoom = 1.0
+ZoomSpeed = 10.0
 
 [node name="Planet" parent="." instance=ExtResource("1_inyph")]
 
-[node name="Camera2D" type="Camera2D" parent="Planet"]
+[node name="Cam" type="Camera2D" parent="Planet"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
 
