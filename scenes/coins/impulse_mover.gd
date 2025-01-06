@@ -1,4 +1,5 @@
 extends Node2D
+class_name ImpulseMover
 
 @export var TargetPos: Vector2
 @export var AnimSpeed: float = 1

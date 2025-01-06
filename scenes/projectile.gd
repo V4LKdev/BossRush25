@@ -18,5 +18,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	print(body)
 	Target.tryDealDamage(body, Damage)
 	queue_free()

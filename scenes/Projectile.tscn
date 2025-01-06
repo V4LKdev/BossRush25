@@ -7,13 +7,16 @@
 radius = 14.3178
 
 [node name="Projectile" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_58hno")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_puowa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_6rj5n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_puowa")
+debug_color = Color(0.906558, 0.000127065, 0.742946, 0.42)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

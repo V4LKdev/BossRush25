@@ -24,16 +24,6 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("fire"):
 		handleFire()
-		
-	var target = getCursorPosition()
-	
-	var dist = (target-getGlobalPosition()).length()
-	var rot = atan2(target.y - getGlobalPosition().y, target.x - getGlobalPosition().x) - (
-		asin($Planet.Radius / dist)) + PI/2
-	
-		
-	var spawnPos = getGlobalPosition() + Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
-	$Sprite2D.global_position = spawnPos
 	
 	$Planet.addInput(dir)
 	
