@@ -9,7 +9,6 @@
 script = ExtResource("1_00c0w")
 MaxZoom = 1.0
 ZoomSpeed = 10.0
-StartSpinSpeed = 45.0
 
 [node name="Planet" parent="." instance=ExtResource("1_inyph")]
 

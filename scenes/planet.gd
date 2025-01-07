@@ -1,12 +1,12 @@
 extends RigidBody2D
 class_name Planet
 
-@export var MoveSpeed = 200.0
-@export var Accel = 1
-@export var Decel = 1
-@export var Radius = 100.0
+@export var MoveSpeed: float = 200.0
+@export var Accel: float = 1
+@export var Decel: float = 1
+@export var Radius: float = 100.0
 
-var speed = 0
+var speed: float = 0
 var moveDir = Vector2()
 
 @export var SpinSpeed: float = 45.0 
@@ -14,7 +14,20 @@ var moveDir = Vector2()
 
 # Call with (0,0) to reset
 func addInput(v: Vector2) -> void:
+	#print(v)
+	#if v.x != 0:
+		#moveDir.x = v.x/abs(v.x)
+	#else:
+		#moveDir.x = 0
+	#
+	#if v.y != 0:
+		#moveDir.y = v.y/abs(v.y)
+	#else:
+		#moveDir.y = 0
+	#
+	#print(moveDir)
 	moveDir = v
+	
 
 # 'value' needs to be multiplied with delta
 func addSpinInput(value: float) -> void:
@@ -28,7 +41,11 @@ func _process(delta: float) -> void:
 	$Sprite2D.rotation_degrees += delta * SpinSpeed
 	
 
+func getTarget() -> Target:
+	return $Target
 
+func getHealth() -> Health:
+	return $Health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

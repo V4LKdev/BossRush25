@@ -1,30 +1,49 @@
 extends Node2D
 class_name Player
 
+@export_category("Firing")
 @export var PROJECTILE: PackedScene = preload("res://scenes/firing/Projectile.tscn")
 @export var ProjectileDamage = 1.0
 
+@export_category("Zoom")
 @export var MinZoom = 0.3
 @export var MaxZoom = 2.0
 @export var ZoomSpeed = 1.0
 
-@export var SpinTolerance: float = 180
+@export_category("Spinning")
+@export var StartSpinSpeed: float = 45
 @export var SpinAccel: float = 35.0
+@export var SpinTolerance: float = 180
+
+@export_category("Population")
+@export var Pops: float = 5 # round down to get actual value
+@export var MaxPops: float = 5
+@export var PopsRegen: float = 0.1
+@export var PopulationFlingKoefficient: float = 0.1
 
 var zoom: float = MaxZoom
 
-@export var StartSpinSpeed: float
-
 func _ready() -> void:
 	$Planet.SpinSpeed = StartSpinSpeed
+	
+	Util.addSingleton(Util.PLAYER, self)
 
 func _process(delta: float) -> void:
 	handleInput(delta)
-	
-	if abs($Planet.SpinSpeed) > SpinTolerance:
-		print("He gon ded")
-	
 	handleZoom(delta)
+	
+	if getActualPops() <= 0:
+		print("He dead")
+		%Cam.reparent(get_tree().root)
+		queue_free()
+		# Game over
+		return
+	
+	addPops(PopsRegen * delta)
+	addPops(-getPopFlingCount()*delta)
+	
+func getPlanet() -> Planet:
+	return $Planet
 
 func handleInput(delta: float) -> void:
 	var dir = Vector2()
@@ -93,6 +112,21 @@ func spawnProjectile(dir: Vector2, pos: Vector2):
 	p.MoveDir = dir
 	
 	Util.addToScene(get_tree(), p)
+
+func getActualPops() -> int:
+	return floor(Pops)
+
+func getPopFlingCount() -> float:
+	var m = (abs($Planet.SpinSpeed) - SpinTolerance)
+	if m <= 0:
+		return 0
+	
+	return m * PopulationFlingKoefficient
+
+# Returns new popcount
+func addPops(value: float) -> float:
+	Pops = clampf(Pops + value, 0, MaxPops)
+	return Pops
 
 func getCursorPosition() -> Vector2:
 	return $Cursor.global_position
