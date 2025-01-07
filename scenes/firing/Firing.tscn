@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3iq65lg0osgr"]
+
+[ext_resource type="Script" path="res://scenes/firing/firing.gd" id="1_rpp07"]
+
+[node name="Firing" type="Node2D"]
+script = ExtResource("1_rpp07")

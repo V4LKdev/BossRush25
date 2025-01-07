@@ -2,23 +2,23 @@
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_00c0w"]
 [ext_resource type="PackedScene" uid="uid://dcvmiih24ups3" path="res://scenes/Planet.tscn" id="1_inyph"]
-[ext_resource type="Script" path="res://target.gd" id="3_gmmte"]
 [ext_resource type="Script" path="res://scenes/cursor.gd" id="4_5ks71"]
+[ext_resource type="PackedScene" uid="uid://3iq65lg0osgr" path="res://scenes/firing/Firing.tscn" id="4_vocne"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_00c0w")
 MaxZoom = 1.0
 ZoomSpeed = 10.0
+StartSpinSpeed = 45.0
 
 [node name="Planet" parent="." instance=ExtResource("1_inyph")]
 
 [node name="Cam" type="Camera2D" parent="Planet"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
-
-[node name="Target" type="Node2D" parent="Planet"]
-unique_name_in_owner = true
-script = ExtResource("3_gmmte")
+position_smoothing_speed = 10.0
 
 [node name="Cursor" type="Node2D" parent="."]
 script = ExtResource("4_5ks71")
+
+[node name="Firing" parent="." instance=ExtResource("4_vocne")]

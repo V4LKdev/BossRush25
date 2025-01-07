@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/coins/pinata.gd" id="1_ceijh"]
 [ext_resource type="Texture2D" uid="uid://ct6co8j1hve1f" path="res://icon.svg" id="2_3me5q"]
-[ext_resource type="PackedScene" uid="uid://tc2um64kcodf" path="res://scenes/Target.tscn" id="2_dg3pv"]
+[ext_resource type="PackedScene" uid="uid://tc2um64kcodf" path="res://scenes/health/Target.tscn" id="2_dg3pv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s0sj2"]
 radius = 67.0671

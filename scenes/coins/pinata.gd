@@ -25,7 +25,8 @@ func explode():
 		
 		c.global_position = global_position
 		m.TargetPos = global_position + Vector2(radius * cos(rot), radius * sin(rot))
-				
+		m.AnimSpeed = 0.3
+		
 		Util.addToScene(get_tree(), c)
 		m.call_deferred("start")
 	
