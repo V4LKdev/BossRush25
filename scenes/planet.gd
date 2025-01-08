@@ -11,6 +11,7 @@ var moveDir = Vector2()
 
 @export var SpinSpeed: float = 45.0 
 
+var isPlayerControlled: bool = false 
 
 # Call with (0,0) to reset
 func addInput(v: Vector2) -> void:
@@ -39,6 +40,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	$Sprite2D.rotation_degrees += delta * SpinSpeed
+	
+	$Sprite2D2.global_position = global_position + moveDir.normalized() * 60
 	
 
 func getTarget() -> Target:

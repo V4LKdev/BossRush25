@@ -25,6 +25,7 @@ var zoom: float = MaxZoom
 
 func _ready() -> void:
 	$Planet.SpinSpeed = StartSpinSpeed
+	$Planet.isPlayerControlled = true
 	
 	Util.addSingleton(Util.PLAYER, self)
 
@@ -94,15 +95,12 @@ func handleFire():
 	
 	var rot = atan2(target.y - getGlobalPosition().y, target.x - getGlobalPosition().x) - (
 		asin($Planet.Radius / dist) - PI/2) * sign(-$Planet.SpinSpeed)
-
-	
-	print(Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot)))
 	
 	var spawnPos = $Planet.global_position + Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
 	#$Sprite2D.global_position = spawnPos
 	
-	var scale = abs($Planet.SpinSpeed/StartSpinSpeed)
-	$Firing.spawnProjectile((target - spawnPos).normalized(), spawnPos, scale, scale)
+	var spinScale = abs($Planet.SpinSpeed/StartSpinSpeed)
+	$Firing.spawnProjectile((target - spawnPos).normalized(), spawnPos, spinScale, spinScale)
 
 func spawnProjectile(dir: Vector2, pos: Vector2):
 	var p = PROJECTILE.instantiate() as Projectile

@@ -16,16 +16,21 @@ func dealOneDamage():
 func dealDamage(value: float) -> float:
 	CurrentHealth -= value
 	
+	print(CurrentHealth, " : ", MaxHealth)
+	
 	if CurrentHealth <= 0:
 		Died.emit()
+		print("Health gone")
 	
 	return clamp(CurrentHealth, 0, MaxHealth)
 
 # Returns the new health
 func addHealth(value: float) -> float:
-	CurrentHealth += value
-	CurrentHealth = clampf(CurrentHealth, 0, MaxHealth)
+	CurrentHealth = clampf(CurrentHealth + value, 0, MaxHealth)
 	return clamp(CurrentHealth, 0, MaxHealth)
+
+func setHealth(value: float):
+	CurrentHealth = clampf(value, 0, MaxHealth)
 
 # Returns the new max health
 func addMaxHealth(value: float) -> float:

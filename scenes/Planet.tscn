@@ -25,4 +25,6 @@ AutoConnectToHealth = true
 
 [node name="Health" parent="." instance=ExtResource("4_ao7ja")]
 
-[connection signal="Died" from="Health" to="." method="destroy"]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_fy3e7")

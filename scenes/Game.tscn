@@ -16,24 +16,5 @@ texture = ExtResource("1_6idqa")
 [node name="Pinata" parent="." instance=ExtResource("3_opkq5")]
 position = Vector2(387, -188)
 
-[node name="Pinata2" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(163, -466)
-
-[node name="Pinata3" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(-376, -450)
-
-[node name="Pinata4" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(-130, -754)
-
-[node name="Pinata5" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(698, -786)
-
-[node name="Pinata6" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(1002, -460)
-
-[node name="Pinata7" parent="." instance=ExtResource("3_opkq5")]
-position = Vector2(1002, -460)
-
 [node name="EnemyPlanetController" parent="." instance=ExtResource("4_yxfk0")]
 position = Vector2(515, 260)
-OrbitDistance = 400.0
