@@ -2,6 +2,7 @@ extends Node2D
 class_name PhaseList
 
 var currentPhase: EnemyPhase
+var player: Player
 
 func getPhaseCount() -> int:
 	return get_child_count()
@@ -17,10 +18,17 @@ func _ready() -> void:
 			return
 	
 	currentPhase = get_child(0)
+
+func init():
+	currentPhase.init(get_parent(), player)
 	currentPhase.start()
 
 func _process(delta: float) -> void:
 	if currentPhase == null:
+		return
+	
+	if player.getPlanet() == null:
+		print("Player nullled")
 		return
 	
 	currentPhase.tick(delta)
@@ -36,6 +44,7 @@ func nextPhase() -> bool:
 		return false
 	
 	currentPhase = get_child(0)
+	currentPhase.init(get_parent(), player)
 	currentPhase.start()
 	return true
 	

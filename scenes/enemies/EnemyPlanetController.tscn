@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhfsri6o7hkwt"]
+[gd_scene load_steps=7 format=3 uid="uid://bhfsri6o7hkwt"]
 
 [ext_resource type="Script" path="res://scenes/enemies/enemy_planet_controller.gd" id="1_8ar87"]
 [ext_resource type="PackedScene" uid="uid://dcvmiih24ups3" path="res://scenes/Planet.tscn" id="2_dds62"]
 [ext_resource type="PackedScene" uid="uid://b424hhryf8j3d" path="res://scenes/enemies/PhaseList.tscn" id="3_sjesm"]
 [ext_resource type="PackedScene" uid="uid://f0shld1v7cec" path="res://scenes/enemies/PlanetPhase1.tscn" id="4_fycwc"]
 [ext_resource type="PackedScene" uid="uid://ci4owy4mcmcj1" path="res://scenes/enemies/PlanetPhase2.tscn" id="5_t0fs1"]
+[ext_resource type="PackedScene" uid="uid://3iq65lg0osgr" path="res://scenes/firing/Firing.tscn" id="6_dr75k"]
 
 [node name="EnemyPlanetController" type="Node2D"]
 script = ExtResource("1_8ar87")
-OrbitDistance = 500.0
 
 [node name="Planet" parent="." instance=ExtResource("2_dds62")]
 Accel = 2.0
@@ -19,3 +19,7 @@ Decel = 2.0
 [node name="PlanetPhase1" parent="PhaseList" instance=ExtResource("4_fycwc")]
 
 [node name="PlanetPhase2" parent="PhaseList" instance=ExtResource("5_t0fs1")]
+FireTime = 1.0
+Damage = 2.0
+
+[node name="Firing" parent="." instance=ExtResource("6_dr75k")]

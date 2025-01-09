@@ -25,6 +25,10 @@ func _process(delta: float) -> void:
 	if PlayerPlanet == null:
 		PlayerController = Util.getSingleton(Util.PLAYER)
 		PlayerPlanet = PlayerController.getPlanet()
+		
+		phases.player = PlayerController
+		if PlayerController != null:
+			phases.init()
 		return
 	
 	tick(delta)

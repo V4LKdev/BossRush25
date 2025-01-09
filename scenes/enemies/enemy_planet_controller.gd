@@ -93,6 +93,12 @@ func orbit(delta: float) -> void:
 func getHealth() -> Health:
 	return $Planet.getHealth()
 
+func getPlanet() -> Planet:
+	return $Planet
+
+func getFiring() -> Firing:
+	return $Firing
+
 func onDeath() -> void:
 	print("Enemy died")
 	

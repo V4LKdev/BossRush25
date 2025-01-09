@@ -3,11 +3,13 @@ class_name EnemyPhase
 
 var playerPlanet: Planet
 var playerController: Player 
-var enemy: Enemy
+var controller: EnemyController
 
-func init(player: Player) -> void:
+func init(ctrl: EnemyController, player: Player) -> void:
+	print("helo")
 	playerController = player
 	playerPlanet = player.getPlanet()
+	controller = ctrl
 
 func start() -> void: pass # virtual
 func tick(delta: float): pass # virtual
@@ -19,4 +21,4 @@ func getPhaseHealth() -> float: # virtual
 	return 1
 
 func getController() -> EnemyController:
-	return enemy.getController()
+	return controller

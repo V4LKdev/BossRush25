@@ -11,24 +11,11 @@ var moveDir = Vector2()
 
 @export var SpinSpeed: float = 45.0 
 
-var isPlayerControlled: bool = false 
+var isPlayerControlled: bool = false
 
 # Call with (0,0) to reset
 func addInput(v: Vector2) -> void:
-	#print(v)
-	#if v.x != 0:
-		#moveDir.x = v.x/abs(v.x)
-	#else:
-		#moveDir.x = 0
-	#
-	#if v.y != 0:
-		#moveDir.y = v.y/abs(v.y)
-	#else:
-		#moveDir.y = 0
-	#
-	#print(moveDir)
 	moveDir = v
-	
 
 # 'value' needs to be multiplied with delta
 func addSpinInput(value: float) -> void:
@@ -59,6 +46,18 @@ func _physics_process(delta: float) -> void:
 		t = Accel
 		
 	linear_velocity = lerp(linear_velocity, moveDir * MoveSpeed, delta * t)
+
+func getFiringPos(cursorPos: Vector2) -> Vector2: #Array: # [Vector2 firingPos, bool isValid]
+	var dist = (cursorPos-global_position).length()
+	
+	#if dist < Radius:
+		#return [Vector2(), false]
+	
+	var rot = atan2(cursorPos.y - global_position.y, cursorPos.x - global_position.x) - (
+		asin(Radius / dist) - PI/2) * sign(-SpinSpeed)
+	
+	var pos = global_position + Vector2(Radius * cos(rot), Radius * sin(rot))
+	return pos
 
 func destroy():
 	print("Explosion effect")

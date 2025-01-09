@@ -1,4 +1,5 @@
 extends Node2D
+class_name Firing
 
 @export var PROJECTILE: PackedScene = preload("res://scenes/firing/Projectile.tscn")
 @export var ProjectileDamage: float = 1

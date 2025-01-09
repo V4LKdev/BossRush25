@@ -26,10 +26,16 @@ var zoom: float = MaxZoom
 func _ready() -> void:
 	$Planet.SpinSpeed = StartSpinSpeed
 	$Planet.isPlayerControlled = true
+	$Planet.getHealth().Died.connect(onDeath)
 	
 	Util.addSingleton(Util.PLAYER, self)
+	#Util.addSingleton(Util.PLAYERDEAD, false)
 
 func _process(delta: float) -> void:
+	if get_node_or_null("Planet") == null:
+		print("Planet gon")
+		return
+	
 	handleInput(delta)
 	handleZoom(delta)
 	
@@ -44,7 +50,7 @@ func _process(delta: float) -> void:
 	addPops(-getPopFlingCount()*delta)
 	
 func getPlanet() -> Planet:
-	return $Planet
+	return get_node_or_null("Planet")
 
 func handleInput(delta: float) -> void:
 	var dir = Vector2()
@@ -82,21 +88,26 @@ func handleZoom(delta: float) -> void:
 	%Cam.zoom.y = lerpf(%Cam.zoom.y, zoom, ZoomSpeed * delta)
 
 func handleFire():
-	if abs($Planet.SpinSpeed) < 5:
+	if abs($Planet.SpinSpeed) < 30:
 		print("Planet is not spinning, cant fire")
 		return
 	
 	var target = getCursorPosition()
-	
+	#
 	var dist = (target-getGlobalPosition()).length()
+	#
+	#if dist < $Planet.Radius:
+		#return
+	#
+	#var rot = atan2(target.y - getGlobalPosition().y, target.x - getGlobalPosition().x) - (
+		#asin($Planet.Radius / dist) - PI/2) * sign(-$Planet.SpinSpeed)
+	#
+	#var spawnPos = $Planet.global_position + Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
+	var spawnPos = $Planet.getFiringPos(target)
+	#var  = result[0] as Vector2
 	
 	if dist < $Planet.Radius:
 		return
-	
-	var rot = atan2(target.y - getGlobalPosition().y, target.x - getGlobalPosition().x) - (
-		asin($Planet.Radius / dist) - PI/2) * sign(-$Planet.SpinSpeed)
-	
-	var spawnPos = $Planet.global_position + Vector2($Planet.Radius * cos(rot), $Planet.Radius * sin(rot))
 	#$Sprite2D.global_position = spawnPos
 	
 	var spinScale = abs($Planet.SpinSpeed/StartSpinSpeed)
@@ -131,3 +142,16 @@ func getCursorPosition() -> Vector2:
 
 func getGlobalPosition() -> Vector2:
 	return $Planet.global_position
+
+func onDeath() -> void:
+	print("Player got dead in the head")
+	#Util.removeSingleton(Util.PLAYER)
+	#Util.addSingleton(Util.PLAYERDEAD, true)
+	
+	#%Cam.position_smoothing_speed = 0
+	#var g = %Cam.global_position
+	#var c = %Cam
+	#%Cam.reset_smoothing()
+	%Cam.reparent(get_tree().root)
+	#c.global_position = g
+	$Planet.destroy()

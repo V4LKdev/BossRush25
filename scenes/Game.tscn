@@ -18,3 +18,8 @@ position = Vector2(387, -188)
 
 [node name="EnemyPlanetController" parent="." instance=ExtResource("4_yxfk0")]
 position = Vector2(515, 260)
+OrbitDistance = 400.0
+
+[node name="EnemyPlanetController2" parent="." instance=ExtResource("4_yxfk0")]
+position = Vector2(-408, 182)
+OrbitDistance = 600.0
