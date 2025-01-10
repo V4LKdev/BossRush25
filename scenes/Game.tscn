@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgysduwu7ryat" path="res://scenes/Player.tscn" id="1_4b8ve"]
 [ext_resource type="Texture2D" uid="uid://bjqbcp8ud2yuo" path="res://assets/images/galaxy-cosmic-3840x2160-14974.jpg" id="1_6idqa"]
 [ext_resource type="PackedScene" uid="uid://2222rt7gybpt" path="res://scenes/coins/Pinata.tscn" id="3_opkq5"]
-[ext_resource type="PackedScene" uid="uid://bhfsri6o7hkwt" path="res://scenes/enemies/EnemyPlanetController.tscn" id="4_yxfk0"]
+[ext_resource type="PackedScene" uid="uid://b27qlrasslvcv" path="res://scenes/enemies/DeathStarController.tscn" id="4_qgwwh"]
 
 [node name="Game" type="Node2D"]
 
@@ -16,10 +16,5 @@ texture = ExtResource("1_6idqa")
 [node name="Pinata" parent="." instance=ExtResource("3_opkq5")]
 position = Vector2(387, -188)
 
-[node name="EnemyPlanetController" parent="." instance=ExtResource("4_yxfk0")]
-position = Vector2(515, 260)
-OrbitDistance = 400.0
-
-[node name="EnemyPlanetController2" parent="." instance=ExtResource("4_yxfk0")]
-position = Vector2(-408, 182)
-OrbitDistance = 600.0
+[node name="DeathStarController" parent="." instance=ExtResource("4_qgwwh")]
+position = Vector2(-502, -362)

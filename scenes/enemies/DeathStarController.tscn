@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b27qlrasslvcv"]
+
+[ext_resource type="Script" path="res://scenes/enemies/death_star_controller.gd" id="1_3sw38"]
+[ext_resource type="PackedScene" uid="uid://dcvmiih24ups3" path="res://scenes/Planet.tscn" id="1_m73up"]
+[ext_resource type="PackedScene" uid="uid://b424hhryf8j3d" path="res://scenes/enemies/PhaseList.tscn" id="3_hor8d"]
+[ext_resource type="PackedScene" uid="uid://d0pnf67xsh5xg" path="res://scenes/enemies/DeathStarPhase1.tscn" id="4_3ov2k"]
+
+[node name="DeathStarController" type="Node2D"]
+script = ExtResource("1_3sw38")
+
+[node name="Planet" parent="." instance=ExtResource("1_m73up")]
+MoveSpeed = 700.0
+Accel = 5.0
+Decel = 5.0
+SpinSpeed = 0.0
+
+[node name="PhaseList" parent="." instance=ExtResource("3_hor8d")]
+
+[node name="DeathStarPhase1" parent="PhaseList" instance=ExtResource("4_3ov2k")]
+
+[node name="Ray" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0pnf67xsh5xg"]
+
+[ext_resource type="Script" path="res://scenes/enemies/death_star_phase_1.gd" id="1_1088k"]
+[ext_resource type="PackedScene" uid="uid://cwjpth2m3qqar" path="res://scenes/enemies/DeathLaser.tscn" id="2_d14mc"]
+
+[node name="DeathStarPhase1" type="Node2D"]
+script = ExtResource("1_1088k")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="DeathLaser" parent="." instance=ExtResource("2_d14mc")]
+width = 7.0
+
+[connection signal="timeout" from="Timer" to="." method="move"]
